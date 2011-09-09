@@ -291,6 +291,9 @@ public class WikipediaListPage {
         String theNotes = rowEntry.getTextContent();
         rowEntry = (Element) rowNodeList.item(7);
         String theImage = rowEntry.getTextContent();
+        
+        String theImageSource = getImageSource(rowEntry);
+        String theImageHREF = getImageHREF(rowEntry);
 
         URL theLocation = null;
 
@@ -309,8 +312,53 @@ public class WikipediaListPage {
         }
 
         thePlacemark = new ScottishCastlePlacemark(theName, regionName,
-                theNotes, theType, theLocation, theCondition, theDate, theMainURL, theImage, theLogger);
+                theNotes, theType, theLocation, theCondition, theDate, theMainURL, 
+                theImageSource, theImageHREF, theLogger);
 
         return thePlacemark;
+    }
+    
+    private String getImageSource(Node imageRowNode) {
+        String retVal = "";
+
+        try {
+            String searchString = ".//div[@class='thumbinner']//img[@class='thumbimage']";
+            XPath imageXpath = XPathFactory.newInstance().newXPath();
+            Node imageNode = (Node)imageXpath.evaluate(searchString, imageRowNode, XPathConstants.NODE);
+            
+            if(imageNode != null){
+                Element imageElement = (Element) imageNode;
+                retVal = imageElement.getAttribute("src");
+            }
+       } catch (Exception e) {
+           theLogger.log(Level.INFO, "XPath image not found.");
+       }
+
+        return retVal;    
+    }
+    
+    private String getImageHREF(Node imageRowNode) {
+        String retVal = "";
+
+        try {
+            String searchString = ".//div[@class='thumbinner']//a[@class='image']";
+            XPath imageXpath = XPathFactory.newInstance().newXPath();
+            Node imageNode = (Node)imageXpath.evaluate(searchString, imageRowNode, XPathConstants.NODE);
+            
+            if(imageNode != null){
+                Element imageAnchorElement = (Element) imageNode;
+                String theHREF = imageAnchorElement.getAttribute("href");
+                
+                if(theHREF.indexOf("http") != 0){         
+                    retVal = theBaseURL + theHREF;
+                } else {
+                    retVal = theHREF;
+                }
+            }
+       } catch (Exception e) {
+           theLogger.log(Level.INFO, "XPath image not found.");
+       }
+
+        return retVal;    
     }
 }

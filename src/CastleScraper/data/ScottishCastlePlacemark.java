@@ -20,11 +20,9 @@ public class ScottishCastlePlacemark implements Comparable {
     private final String theCondition;
     private final String theDate;
     private URL theURL;
+    private String theImageSource;
+    private String theImageHREF;
     private final Logger theLogger;
-    /**
-     * 
-     */
-    public String theImage;
 
     /**
      * 
@@ -47,7 +45,8 @@ public class ScottishCastlePlacemark implements Comparable {
             String newCondition,
             String newDate,
             URL newURL,
-            String newImage,
+            String newImageSource,
+            String newImageHREF,
             Logger logger) {
         theName = newName;
         theRegion = newRegion;
@@ -57,7 +56,8 @@ public class ScottishCastlePlacemark implements Comparable {
         theCondition = newCondition;
         theDate = newDate;
         theURL = newURL;
-        theImage = newImage;
+        theImageSource = newImageSource;
+        theImageHREF = newImageHREF;
         theLogger = logger;
     }
 
@@ -76,7 +76,8 @@ public class ScottishCastlePlacemark implements Comparable {
         theCondition = theOther.theCondition;
         theDate = theOther.theDate;
         theURL = theOther.theURL;
-        theImage = theOther.theImage;
+        theImageSource = theOther.theImageSource;
+        theImageHREF = theOther.theImageHREF;
         theLogger = theOther.theLogger;
     }
 
@@ -114,6 +115,25 @@ public class ScottishCastlePlacemark implements Comparable {
             ps.println();
         }
 
+        if (!(theImageHREF.isEmpty() || theImageSource.isEmpty())) {
+            ps.print("&lt;p&gt;");
+            ps.println();
+            ps.print("&lt;p&gt;");
+            ps.println();
+            ps.print("&lt;a href=\"");
+            ps.print(theImageHREF);
+            ps.print("\"&gt;");
+            ps.print("&lt;img src=\"");
+            ps.print(theImageSource);
+            ps.print("\"/&gt;");
+            ps.print("&lt;/a&gt;");
+            ps.println();
+            ps.print("&lt;/p&gt;");
+            ps.println();
+            ps.print("&lt;/p&gt;");
+            ps.println();
+        }
+        
         ps.print("</description>");
         ps.println();
         ps.print("<styleUrl>#exampleStyleMap</styleUrl>");
