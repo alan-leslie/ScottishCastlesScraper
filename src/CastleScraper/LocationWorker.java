@@ -54,7 +54,7 @@ public class LocationWorker implements Callable<ScottishCastlePlacemark> {
             theLogger.log(Level.INFO, "LocationWorker call unsuccessful for: {0}", _placemark.getId());
             return null;
         } else {
-            theLogger.log(Level.INFO, "LocationWorker call successful for {0}", _placemark.getId()");
+            theLogger.log(Level.INFO, "LocationWorker call successful for {0}", _placemark.getId());
             return theResult;
         }
     }
