@@ -66,12 +66,12 @@ public class WikipediaListPage {
         theLogger.log(Level.INFO, "Construction worker - getting region names");
 
         try {
-            XPath editSectionXpath = XPathFactory.newInstance().newXPath();
-            NodeList editSectionNodeList = (NodeList) editSectionXpath.evaluate("/html//span[@class='editsection']", theDocument, XPathConstants.NODESET);
-            int editSectionLength = editSectionNodeList.getLength();
+            XPath headingXpath = XPathFactory.newInstance().newXPath();
+            NodeList headingNodeList = (NodeList) headingXpath.evaluate("/html/body//h2/span", theDocument, XPathConstants.NODESET);
+            int editSectionLength = headingNodeList.getLength();
 
             for (int j = 0; j < editSectionLength; j++) {
-                Element show = (Element) editSectionNodeList.item(j);
+                Element show = (Element) headingNodeList.item(j);
                 NodeList rowNodeList = show.getChildNodes();
                 int sectionLength = rowNodeList.getLength();
 
@@ -85,7 +85,7 @@ public class WikipediaListPage {
                         if (aLength > 1) {
                             Node titleNode = (Node) theMap.getNamedItem("title");
                             String sectionTitle = (String) titleNode.getNodeValue();
-                            String regionTitle = sectionTitle.substring(13).trim();
+                            String regionTitle = sectionTitle.trim();
                             theRegions.add(regionTitle);
                         }
                     }
@@ -199,6 +199,7 @@ public class WikipediaListPage {
     public List<ScottishCastlePlacemark> extractLinks() {
         List<ScottishCastlePlacemark> retVal = new ArrayList<ScottishCastlePlacemark>();
         List<String> regionNames = getRegionNames();
+        int regionNamesLength = regionNames.size();
         NodeList castleTables = getTables();
         int castleTablesLength = castleTables.getLength();
 
@@ -229,7 +230,7 @@ public class WikipediaListPage {
         List<ScottishCastlePlacemark> retVal = new ArrayList<ScottishCastlePlacemark>();
 
         try {
-            String searchString = "./tbody/tr";
+            String searchString = "./tr";
             XPath tableXpath = XPathFactory.newInstance().newXPath();
             NodeList tableNodeRowList = (NodeList) tableXpath.evaluate(searchString, tableNode, XPathConstants.NODESET);
             int tableLength = tableNodeRowList.getLength();
