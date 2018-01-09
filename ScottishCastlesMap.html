@@ -12,12 +12,12 @@
         .olPopup p { margin:0px; font-size: .8em;}
         .olPopup h2 { font-size:1.0em; }
     </style>
-        <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.6.2.js"></script>
         <!--<script src="http://maps.google.com/maps/api/js?sensor=false&amp;key=AIzaSyDdfZ991xmwxK_3DfPpFROX20AtvRiCKtQ"></script> -->
-	    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDdfZ991xmwxK_3DfPpFROX20AtvRiCKtQ&sensor=false"></script>
+	    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdfZ991xmwxK_3DfPpFROX20AtvRiCKtQ&sensor=false"></script>
 
         <!--<script src="http://maps.google.com/maps/api/js?sensor=false"></script> -->
-	<script type="text/javascript" src="http://openlayers.org/api/OpenLayers.js"></script> 
+	<script type="text/javascript" src="https://openlayers.org/api/OpenLayers.js"></script> 
 
        <script type="text/javascript">
         var lon = -3.85778;
@@ -39,11 +39,11 @@
             map = new OpenLayers.Map('map', options);
             var mapnik = new OpenLayers.Layer.TMS(
                 "OpenStreetMap (Mapnik)",
-                "http://tile.openstreetmap.org/",
+                "https://tile.openstreetmap.org/",
                 {
                     type: 'png', getURL: osm_getTileURL,
                     displayOutsideMaxExtent: true,
-                    attribution: '<a href="http://www.openstreetmap.org/">OpenStreetMap</a>'
+                    attribution: '<a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
                 }
             );
 	    
@@ -147,7 +147,7 @@
         <h2 id="implementation_details">Implementation</h2>
 
 	<p>
-	The map framework is <a href="http://openlayers.org/">OpenLayers</a> with <a href="http://www.openstreetmap.org/">OpenStreetMap</a> and <a href="http://maps.google.co.uk/maps">Google map</a> overlays.
+	The map framework is <a href="https://openlayers.org/">OpenLayers</a> with <a href="https://www.openstreetmap.org/">OpenStreetMap</a> and <a href="https://maps.google.co.uk/maps">Google map</a> overlays.
 	</p>
 </body>
 </html>
