@@ -1,3 +1,4 @@
 Java program to scrape wikipedia to get scottish castle location data and output it 
 to a KML (google maps/earth) file.
+Out of date with recent wikipedia format.
 Note: built with netbeans.
